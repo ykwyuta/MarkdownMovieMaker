@@ -6,7 +6,13 @@ fn mix(a: &RgbaImage, b: &RgbaImage, f: impl Fn(u32, u32) -> f32) -> RgbaImage {
     let mut out = b.clone();
     let w = out.width() as usize;
     let (src, dst): (&[u8], &mut [u8]) = (a.as_raw(), &mut out);
-    for (i, (o, s)) in dst.chunks_exact_mut(4).zip(src.chunks_exact(4)).enumerate() {
+    for (i, (o, s)) in dst
+        .as_chunks_mut::<4>()
+        .0
+        .iter_mut()
+        .zip(src.as_chunks::<4>().0)
+        .enumerate()
+    {
         let t = (f((i % w) as u32, (i / w) as u32).clamp(0.0, 1.0) * 256.0) as u32;
         if t >= 256 {
             continue;

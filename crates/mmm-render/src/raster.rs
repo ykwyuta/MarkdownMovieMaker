@@ -88,7 +88,12 @@ fn blit(canvas: &mut RgbaImage, src: &RgbaImage, p: &Placement) {
         if !flip && opacity >= 256 {
             let sx0 = (x0 - left) as usize;
             let row = &buf[srow + sx0 * 4..srow + (sx0 + n) * 4];
-            for (d, s) in dst.chunks_exact_mut(4).zip(row.chunks_exact(4)) {
+            for (d, s) in dst
+                .as_chunks_mut::<4>()
+                .0
+                .iter_mut()
+                .zip(row.as_chunks::<4>().0)
+            {
                 let a = u32::from(s[3]);
                 if a == 255 {
                     d[..3].copy_from_slice(&s[..3]);
@@ -101,7 +106,7 @@ fn blit(canvas: &mut RgbaImage, src: &RgbaImage, p: &Placement) {
             }
             continue;
         }
-        for (i, d) in dst.chunks_exact_mut(4).enumerate() {
+        for (i, d) in dst.as_chunks_mut::<4>().0.iter_mut().enumerate() {
             let sx = (x0 - left) as usize + i;
             let sx = if flip { sw as usize - 1 - sx } else { sx };
             let s = &buf[srow + sx * 4..srow + sx * 4 + 4];

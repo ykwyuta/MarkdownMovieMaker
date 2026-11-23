@@ -123,7 +123,7 @@ fn load_svg(path: &Path) -> Result<RgbaImage, String> {
     );
     // tiny-skia は乗算済みアルファなので、ふつうの RGBA に戻す
     let mut rgba = pixmap.take();
-    for px in rgba.chunks_exact_mut(4) {
+    for px in rgba.as_chunks_mut::<4>().0 {
         let a = u32::from(px[3]);
         if a != 0 && a != 255 {
             for c in &mut px[..3] {

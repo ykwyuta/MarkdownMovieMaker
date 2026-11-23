@@ -80,7 +80,7 @@ impl Worker {
                     let (width, height) = img.dimensions();
                     // RGBA → BGRA はその場で R と B を入れ替えるだけ
                     let mut bgra = Arc::unwrap_or_clone(img).into_raw();
-                    for p in bgra.chunks_exact_mut(4) {
+                    for p in bgra.as_chunks_mut::<4>().0 {
                         p.swap(0, 2);
                     }
                     *out.lock().unwrap() = Some(Frame {
@@ -167,7 +167,9 @@ impl Thumbs {
                         let img = r.still(script, &req.timeline, &req.lipsync, si, line);
                         let bgra = img
                             .as_raw()
-                            .chunks_exact(4)
+                            .as_chunks::<4>()
+                            .0
+                            .iter()
                             .flat_map(|p| [p[2], p[1], p[0], 255])
                             .collect();
                         let frame = Frame {

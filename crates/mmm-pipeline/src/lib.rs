@@ -477,16 +477,49 @@ pub fn render_images(
 mod tests {
     use super::*;
 
-    /// リポジトリの素材と無音エンジンで、短い台本を MP4・MP3・PNG まで通す。
+    /// 一時ディレクトリに生成したテスト素材と無音エンジンで、短い台本を MP4・MP3・PNG まで通す。
     #[test]
     fn end_to_end_with_silent_engine() {
-        let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
-        if !root.join("data/character_master.json").exists() {
-            return;
-        }
-        let text = "# Scene@テスト\n- bg: data/bg/Blackboard.png\n- before_pause: 0.3\n- id: zundamon@default_left.bouncing\n- id: metan@default.shaking\n- sound: data/sound/correct1.mp3 0.5\n- bgm: data/bgm/001.mp3\n\n## Lines\nzundamon: こんにちは\nmetan: Hello\nnobody: 飛ばされる\n";
-        let project = Project::from_text(text, root.canonicalize().unwrap(), None).unwrap();
         let dir = tempfile::tempdir().unwrap();
+        let data_dir = dir.path().join("data");
+        std::fs::create_dir_all(&data_dir).unwrap();
+
+        // テスト用の簡易画像・音声素材を一時ディレクトリに生成する
+        let bg_img = image::RgbaImage::from_pixel(32, 18, image::Rgba([30, 60, 40, 255]));
+        bg_img.save(data_dir.join("bg.png")).unwrap();
+        let char_img = image::RgbaImage::from_pixel(16, 16, image::Rgba([200, 220, 120, 255]));
+        char_img.save(data_dir.join("zundamon.png")).unwrap();
+        char_img.save(data_dir.join("metan.png")).unwrap();
+
+        let tone = mmm_audio::AudioBuffer::silence(44_100, 1, 22_050);
+        mmm_audio::wav::write_wav(&data_dir.join("se.wav"), &tone).unwrap();
+        mmm_audio::wav::write_wav(&data_dir.join("bgm.wav"), &tone).unwrap();
+
+        std::fs::write(
+            data_dir.join("character_master.json"),
+            r#"{
+                "zundamon": {
+                    "name": "ずんだもん",
+                    "speaker_id": 3,
+                    "variations": {
+                        "default_left": {"image_closed": "data/zundamon.png", "image_open": "data/zundamon.png", "scale": 1.0, "pos": [20, 20]}
+                    },
+                    "subtitle_style": {"fontsize": 24, "color": "green", "border_color": "white"}
+                },
+                "metan": {
+                    "name": "四国めたん",
+                    "speaker_id": 2,
+                    "variations": {
+                        "default": {"image_closed": "data/metan.png", "image_open": "data/metan.png", "scale": 1.0, "pos": [200, 20]}
+                    },
+                    "subtitle_style": {"fontsize": 24, "color": "pink", "border_color": "white"}
+                }
+            }"#,
+        )
+        .unwrap();
+
+        let text = "# Scene@テスト\n- bg: data/bg.png\n- before_pause: 0.3\n- id: zundamon@default_left.bouncing\n- id: metan@default.shaking\n- sound: data/se.wav 0.5\n- bgm: data/bgm.wav\n\n## Lines\nzundamon: こんにちは\nmetan: Hello\nnobody: 飛ばされる\n";
+        let project = Project::from_text(text, dir.path().to_path_buf(), None).unwrap();
         let opts = Options {
             width: 320,
             height: 180,

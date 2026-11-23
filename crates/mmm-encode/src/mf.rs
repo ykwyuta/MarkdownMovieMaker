@@ -214,7 +214,9 @@ impl VideoWriter for MfWriter {
         self.bgra.extend(
             frame
                 .as_raw()
-                .chunks_exact(4)
+                .as_chunks::<4>()
+                .0
+                .iter()
                 .flat_map(|p| [p[2], p[1], p[0], 255]),
         );
         let fps = i64::from(s.fps);
