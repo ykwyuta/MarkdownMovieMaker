@@ -1,0 +1,31 @@
+[package]
+name = "mmm-tts"
+description = "Speech synthesis for MarkdownMovieMaker: VOICEVOX (default) and Kokoro with an on-disk cache"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[features]
+default = ["voicevox", "kokoro"]
+# Kokoro-82M（Apache-2.0、日英対応の軽量モデル）。Candle による純 Rust 推論
+kokoro = ["dep:any-tts", "any-tts/kokoro", "any-tts/download"]
+# NVIDIA GPU（RTX 3060 など）で推論する。ビルドに CUDA Toolkit が必要
+cuda = ["any-tts?/cuda"]
+# 起動済みの VOICEVOX エンジン（HTTP）を使う
+voicevox = ["dep:ureq", "dep:serde_json"]
+
+[dependencies]
+mmm-core.workspace = true
+mmm-audio.workspace = true
+thiserror.workspace = true
+blake3 = { version = "1", features = ["pure"] }
+any-tts = { version = "=0.2.0", default-features = false, optional = true }
+ureq = { version = "2.12", default-features = false, features = ["json"], optional = true }
+serde_json = { workspace = true, optional = true }
+
+[dev-dependencies]
+serde_json.workspace = true
+tempfile.workspace = true
+
+[lints]
+workspace = true

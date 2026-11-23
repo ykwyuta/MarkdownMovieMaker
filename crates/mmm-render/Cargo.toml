@@ -1,0 +1,22 @@
+[package]
+name = "mmm-render"
+description = "Frame compositor for MarkdownMovieMaker: backgrounds, characters, effects, lip sync and subtitles"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+mmm-core.workspace = true
+image.workspace = true
+ab_glyph = "0.2.32"
+mp4 = "0.14"
+rusty_h264 = "0.17.4"
+rayon = "1.10"
+resvg = { version = "0.45", default-features = false, features = ["text", "system-fonts", "raster-images"] }
+thiserror.workspace = true
+
+[dev-dependencies]
+serde_json.workspace = true
+
+[lints]
+workspace = true

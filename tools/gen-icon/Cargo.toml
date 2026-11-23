@@ -1,0 +1,13 @@
+[package]
+name = "mmm-gen-icon"
+description = "Generates the MarkdownMovieMaker application icon (ICO and PNG)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+image.workspace = true
+
+[lints]
+workspace = true

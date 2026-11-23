@@ -1,0 +1,29 @@
+[package]
+name = "mmm-pipeline"
+description = "Script → speech → timeline → MP4/MP3/PNG pipeline shared by the MarkdownMovieMaker CLI and Studio"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[features]
+default = ["voicevox", "kokoro", "software"]
+kokoro = ["mmm-tts/kokoro"]
+voicevox = ["mmm-tts/voicevox"]
+cuda = ["mmm-tts/cuda"]
+software = ["mmm-encode/software"]
+
+[dependencies]
+mmm-core.workspace = true
+mmm-audio.workspace = true
+mmm-render.workspace = true
+mmm-tts.workspace = true
+mmm-encode.workspace = true
+image.workspace = true
+thiserror.workspace = true
+rayon = "1.10"
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[lints]
+workspace = true

@@ -1,0 +1,48 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/mmm-core",
+    "crates/mmm-audio",
+    "crates/mmm-render",
+    "crates/mmm-tts",
+    "crates/mmm-encode",
+    "crates/mmm-pipeline",
+    "apps/mmm",
+    "apps/markdown-movie-maker",
+    "tools/gen-icon",
+]
+
+[workspace.package]
+version = "0.2.0"
+edition = "2024"
+rust-version = "1.88"
+repository = "https://github.com/ykwyuta/storydown-core-py"
+
+[workspace.dependencies]
+mmm-core = { path = "crates/mmm-core" }
+mmm-audio = { path = "crates/mmm-audio" }
+mmm-render = { path = "crates/mmm-render" }
+mmm-tts = { path = "crates/mmm-tts", default-features = false }
+mmm-encode = { path = "crates/mmm-encode", default-features = false }
+mmm-pipeline = { path = "crates/mmm-pipeline", default-features = false }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "webp", "bmp"] }
+tempfile = "3"
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+
+[workspace.lints.clippy]
+dbg_macro = "warn"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+
+# 画像合成・音声処理・推論はデバッグビルドでも最適化しないとプレビューが遅すぎる
+[profile.dev.package."*"]
+opt-level = 2

@@ -1,0 +1,31 @@
+[package]
+name = "mmm-encode"
+description = "MP4 writer without ffmpeg: pure-Rust H.264 (rusty_h264, GOP-parallel) + Opus + muxide, or Media Foundation on Windows"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[features]
+default = ["software"]
+# 純 Rust: rusty_h264（H.264, BSD-2）+ rusty-opus（BSD-3）+ muxide（MP4, MIT/Apache-2.0）。C/C++ も ffmpeg も不要
+software = ["dep:rusty_h264", "dep:rusty-opus", "dep:muxide", "dep:rayon"]
+
+[dependencies]
+image.workspace = true
+thiserror.workspace = true
+rusty_h264 = { version = "0.17.4", optional = true }
+rusty-opus = { version = "1.2.1", optional = true }
+muxide = { version = "0.5.0", optional = true }
+rayon = { version = "1.10", optional = true }
+
+# Windows 標準の Media Foundation（H.264/AAC）。RTX 3060 では NVENC のハードウェアエンコーダが使われる。
+# yyeditor（yytoolbox の画面録画）の SinkWriter 実装を移植
+[target.'cfg(windows)'.dependencies.windows]
+version = "0.62"
+features = ["Win32_Foundation", "Win32_Media_MediaFoundation", "Win32_System_Com"]
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[lints]
+workspace = true

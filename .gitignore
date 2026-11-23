@@ -1,0 +1,8 @@
+/target/
+output.mp4
+*.log
+data/*
+!data/character_master.json
+.vscode/
+.idea/
+references/

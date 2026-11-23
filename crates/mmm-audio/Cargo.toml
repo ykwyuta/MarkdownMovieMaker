@@ -1,0 +1,19 @@
+[package]
+name = "mmm-audio"
+description = "Audio decoding, resampling, time-stretching, timeline mixing and WAV/MP3 export"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+mmm-core.workspace = true
+thiserror.workspace = true
+hound = "3.5"
+rayon = "1.10"
+# 純 Rust のデコーダ（MP3/WAV/OGG Vorbis/FLAC/AAC-in-MP4）。ffmpeg は使わない
+symphonia = { version = "0.5.5", default-features = false, features = ["mp3", "wav", "pcm", "ogg", "vorbis", "flac", "aac", "isomp4"] }
+# yyeditor（yytoolbox）の録音機能と同じ純 Rust MP3 エンコーダ
+rusty_mp3 = { version = "=1.0.5", default-features = false }
+
+[lints]
+workspace = true

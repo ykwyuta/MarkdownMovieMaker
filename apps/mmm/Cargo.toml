@@ -1,0 +1,31 @@
+[package]
+name = "mmm"
+description = "MarkdownMovieMaker CLI: Markdown script to narrated MP4 without Python or ffmpeg"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "mmm"
+path = "src/main.rs"
+
+[features]
+default = ["voicevox", "kokoro", "software"]
+kokoro = ["mmm-pipeline/kokoro"]
+voicevox = ["mmm-pipeline/voicevox"]
+cuda = ["mmm-pipeline/cuda"]
+software = ["mmm-pipeline/software"]
+
+[dependencies]
+mmm-pipeline.workspace = true
+mmm-core.workspace = true
+mmm-tts.workspace = true
+image.workspace = true
+serde_json = { workspace = true, features = ["preserve_order"] }
+clap = { version = "4.5", features = ["derive"] }
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[lints]
+workspace = true

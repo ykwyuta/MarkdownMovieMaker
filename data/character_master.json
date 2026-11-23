@@ -1,0 +1,251 @@
+{
+    "zundamon": {
+        "name": "ずんだもん",
+        "speaker_id": 3,
+        "voice": {"engine": "voicevox", "language": "ja"},
+        "variations": {
+            "voice_only": {
+                "image_closed": "data/character/voice_only.png",
+                "image_open": "data/character/voice_only.png",
+                "scale": 1.0,
+                "pos": [0, 0]
+            },
+            "default": {
+                "image_closed": "data/character/zundamon_default_closed.png",
+                "image_open": "data/character/zundamon_default_open.png",
+                "scale": 0.9,
+                "pos": [1200, 300]
+            },
+            "default_left": {
+                "image_closed": "data/character/zundamon_default_closed_left.png",
+                "image_open": "data/character/zundamon_default_open_left.png",
+                "scale": 0.9,
+                "pos": [100, 300]
+            },
+            "default_closeup": {
+                "image_closed": "data/character/zundamon_default_closed_closeup.png",
+                "image_open": "data/character/zundamon_default_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            },
+            "default_left_closeup": {
+                "image_closed": "data/character/zundamon_default_closed_left_closeup.png",
+                "image_open": "data/character/zundamon_default_open_left_closeup.png",
+                "scale": 0.9,
+                "pos": [200, 100]
+            },
+            "smile": {
+                "image_closed": "data/character/zundamon_smile_closed.png",
+                "image_open": "data/character/zundamon_smile_open.png",
+                "scale": 0.9,
+                "pos": [1200, 300]
+            },
+            "smile_left": {
+                "image_closed": "data/character/zundamon_smile_closed_left.png",
+                "image_open": "data/character/zundamon_smile_open_left.png",
+                "scale": 0.9,
+                "pos": [100, 300]
+            },
+            "smile_closeup": {
+                "image_closed": "data/character/zundamon_smile_closed_closeup.png",
+                "image_open": "data/character/zundamon_smile_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            },
+            "smile_left_closeup": {
+                "image_closed": "data/character/zundamon_smile_closed_left_closeup.png",
+                "image_open": "data/character/zundamon_smile_open_left_closeup.png",
+                "scale": 0.9,
+                "pos": [200, 100]
+            },            
+            "tsukareta": {
+                "image_closed": "data/character/zundamon_tsukareta_closed.png",
+                "image_open": "data/character/zundamon_tsukareta_open.png",
+                "scale": 0.9,
+                "pos": [1200, 300]
+            },
+            "tsukareta_left": {
+                "image_closed": "data/character/zundamon_tsukareta_closed_left.png",
+                "image_open": "data/character/zundamon_tsukareta_open_left.png",
+                "scale": 0.9,
+                "pos": [100, 300]
+            },
+            "tsukareta_closeup": {
+                "image_closed": "data/character/zundamon_tsukareta_closed_closeup.png",
+                "image_open": "data/character/zundamon_tsukareta_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            },
+            "tsukareta_left_closeup": {
+                "image_closed": "data/character/zundamon_tsukareta_closed_left_closeup.png",
+                "image_open": "data/character/zundamon_tsukareta_open_left_closeup.png",
+                "scale": 0.9,
+                "pos": [200, 100]
+            },
+            "komatta": {
+                "image_closed": "data/character/zundamon_komatta_closed.png",
+                "image_open": "data/character/zundamon_komatta_open.png",
+                "scale": 0.9,
+                "pos": [1200, 300]
+            },
+            "komatta_left": {
+                "image_closed": "data/character/zundamon_komatta_closed_left.png",
+                "image_open": "data/character/zundamon_komatta_open_left.png",
+                "scale": 0.9,
+                "pos": [100, 300]
+            },
+            "komatta_closeup": {
+                "image_closed": "data/character/zundamon_komatta_closed_closeup.png",
+                "image_open": "data/character/zundamon_komatta_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            },
+            "komatta_left_closeup": {
+                "image_closed": "data/character/zundamon_komatta_closed_left_closeup.png",
+                "image_open": "data/character/zundamon_komatta_open_left_closeup.png",
+                "scale": 0.9,
+                "pos": [200, 100]
+            }
+        },
+        "subtitle_style": {
+            "fontsize": 70,
+            "color": "green",
+            "border_color": "green",
+            "pos": ["center", "bottom"]
+        }
+    },
+    "metan": {
+        "name": "四国めたん",
+        "speaker_id": 2,
+        "voice": {"engine": "voicevox", "language": "ja"},
+        "variations": {
+            "voice_only": {
+                "image_closed": "data/character/voice_only.png",
+                "image_open": "data/character/voice_only.png",
+                "scale": 1.0,
+                "pos": [0, 0]
+            },
+            "default": {
+                "image_closed": "data/character/metan_default_closed.png",
+                "image_open": "data/character/metan_default_open.png",
+                "scale": 0.9,
+                "pos": [1300, 300]
+            },
+            "default_closeup": {
+                "image_closed": "data/character/metan_default_closed_closeup.png",
+                "image_open": "data/character/metan_default_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            },
+            "ee": {
+                "image_closed": "data/character/metan_ee_closed.png",
+                "image_open": "data/character/metan_ee_open.png",
+                "scale": 0.9,
+                "pos": [1300, 300]
+            },
+            "ee_closeup": {
+                "image_closed": "data/character/metan_ee_closed_closeup.png",
+                "image_open": "data/character/metan_ee_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            },
+            "smile": {
+                "image_closed": "data/character/metan_smile_closed.png",
+                "image_open": "data/character/metan_smile_open.png",
+                "scale": 0.9,
+                "pos": [1300, 300]
+            },
+            "smile_closeup": {
+                "image_closed": "data/character/metan_smile_closed_closeup.png",
+                "image_open": "data/character/metan_smile_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            },
+            "komatta": {
+                "image_closed": "data/character/metan_komatta_closed.png",
+                "image_open": "data/character/metan_komatta_open.png",
+                "scale": 0.9,
+                "pos": [1300, 300]
+            },
+            "komatta_closeup": {
+                "image_closed": "data/character/metan_komatta_closed_closeup.png",
+                "image_open": "data/character/metan_komatta_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            }
+        },
+        "subtitle_style": {
+            "fontsize": 70,
+            "color": "red",
+            "border_color": "red",
+            "pos": ["center", "bottom"]
+        }
+    },
+    "tumugi": {
+        "name": "春日つむぎ",
+        "speaker_id": 8,
+        "voice": {"engine": "voicevox", "language": "ja"},
+        "variations": {
+            "voice_only": {
+                "image_closed": "data/character/voice_only.png",
+                "image_open": "data/character/voice_only.png",
+                "scale": 1.0,
+                "pos": [0, 0]
+            },
+            "default": {
+                "image_closed": "data/character/tumugi_default_closed.png",
+                "image_open": "data/character/tumugi_default_open.png",
+                "scale": 0.9,
+                "pos": [1000, 300]
+            },
+            "default_closeup": {
+                "image_closed": "data/character/tumugi_default_closed_closeup.png",
+                "image_open": "data/character/tumugi_default_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            },
+            "yes": {
+                "image_closed": "data/character/tumugi_yes_closed.png",
+                "image_open": "data/character/tumugi_yes_open.png",
+                "scale": 0.9,
+                "pos": [1000, 300]
+            },
+            "yes_closeup": {
+                "image_closed": "data/character/tumugi_yes_closed_closeup.png",
+                "image_open": "data/character/tumugi_yes_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            },
+            "smile": {
+                "image_closed": "data/character/tumugi_smile_closed.png",
+                "image_open": "data/character/tumugi_smile_open.png",
+                "scale": 0.9,
+                "pos": [1000, 300]
+            },
+            "smile_closeup": {
+                "image_closed": "data/character/tumugi_smile_closed_closeup.png",
+                "image_open": "data/character/tumugi_smile_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            },
+            "komatta": {
+                "image_closed": "data/character/tumugi_komatta_closed.png",
+                "image_open": "data/character/tumugi_komatta_open.png",
+                "scale": 0.9,
+                "pos": [1000, 300]
+            },
+            "komatta_closeup": {
+                "image_closed": "data/character/tumugi_komatta_closed_closeup.png",
+                "image_open": "data/character/tumugi_komatta_open_closeup.png",
+                "scale": 0.9,
+                "pos": [1000, 100]
+            }
+        },
+        "subtitle_style": {
+            "fontsize": 70,
+            "color": "orange",
+            "border_color": "orange",
+            "pos": ["center", "bottom"]
+        }
+    }
+}
