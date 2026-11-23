@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   pull_request:
 
 env:
@@ -20,6 +20,11 @@ jobs:
       - run: cargo fmt --all -- --check
       - run: cargo clippy --workspace --all-targets --locked -- -D warnings
       - run: cargo test --workspace --locked
+      - run: cargo build --release --locked -p mmm
+      - uses: actions/upload-artifact@v4
+        with:
+          name: markdown-movie-maker-linux-x64
+          path: target/release/mmm
 
   windows:
     runs-on: windows-latest
@@ -39,3 +44,26 @@ jobs:
           path: |
             target/release/mmm.exe
             target/release/MarkdownMovieMaker.exe
+
+  release:
+    needs: [linux, windows]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Package release archives
+        run: |
+          mkdir -p release-assets
+          (cd artifacts/markdown-movie-maker-windows-x64 && zip -r ../../release-assets/markdown-movie-maker-v0.1.0-windows-x64.zip .)
+          (cd artifacts/markdown-movie-maker-linux-x64 && tar -czf ../../release-assets/markdown-movie-maker-v0.1.0-linux-x64.tar.gz .)
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v0.1.0
+          name: v0.1.0
+          files: |
+            release-assets/markdown-movie-maker-v0.1.0-windows-x64.zip
+            release-assets/markdown-movie-maker-v0.1.0-linux-x64.tar.gz
